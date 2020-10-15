@@ -13,18 +13,27 @@
 <body>
 <?php
 $user = "el usuario lo deve introducir desde el input";
-$mensaje = "hola wenas esto es php";
+$mensaje = $_POST["mensaje"];
 ?>
 <!--logo-->
 <div class="jumbotron text-center">
   <h1>MathNet</h1>
 </div>
+
 <!--mensaje-->
-<div class="container"><p class="font-weight-bolder">ingrese el mensaje here:</p></div>
-<div class="container">
-  <label for="comment">mensaje:</label>
-  <textarea class="form-control" rows="5" id="comment"></textarea>
+<div class="container"><p class="font-weight-bolder"></p></div>
+<form action="index.php" method="post">
+<div class="container"><div class="input-group">
+      
+      <input id="email" type="text" class="form-control" name="email" placeholder="name">
+    </div>
+
+  <textarea class="form-control" rows="5" id="comment" type="text" name="mensaje" placeholder="escriba un mensaje"></textarea>
+  <input type="submit">
 </div>
+</form>
+<!--fin mensaje-->
+
 <div class= "container">
 <div class="table-responsive-sm">
 <table class="table table-striped">
@@ -36,12 +45,8 @@ $mensaje = "hola wenas esto es php";
     </thead>
     <tbody>
         <tr>
-            <td>random</td>
-            <td><?= $mensaje ?></td>
-        </tr>
-        <tr>
-            <td>mathias</td>
-            <td>hola que talka</td>
+            <td><?php echo $_POST["name"]; ?></td>
+            <td><?php echo $_POST["mensaje"]; ?></td>
         </tr>
     </tbody>
     </div>
