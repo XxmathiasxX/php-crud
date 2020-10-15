@@ -11,10 +11,7 @@
 </head>
 <!--body init-->
 <body>
-<?php
-$user = "el usuario lo deve introducir desde el input";
-$mensaje = $_POST["mensaje"];
-?>
+
 <!--logo-->
 <div class="jumbotron text-center">
   <h1>MathNet</h1>
@@ -25,7 +22,7 @@ $mensaje = $_POST["mensaje"];
 <form action="index.php" method="post">
 <div class="container"><div class="input-group">
       
-      <input id="email" type="text" class="form-control" name="email" placeholder="name">
+      <input id="email" type="text" class="form-control" name="nombre" placeholder="nombre">
     </div>
 
   <textarea class="form-control" rows="5" id="comment" type="text" name="mensaje" placeholder="escriba un mensaje"></textarea>
@@ -33,6 +30,37 @@ $mensaje = $_POST["mensaje"];
 </div>
 </form>
 <!--fin mensaje-->
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mathnet";
+//creating the conn 
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+if (!$conn){
+    die("fallo la conexion: ". mysqli_connect_error());
+}
+
+$mensaje = mysqli_real_escape_string($conn, $_REQUEST['mensaje']);
+$nombre = mysqli_real_escape_string($conn, $_REQUEST['nombre']);
+
+$sql = "INSERT INTO mensajes ( mensaje, nombre)
+VALUES ('$mensaje','$nombre')";
+
+if ($conn->query($sql) === TRUE) {
+  echo '<div class="container"><div class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Success!</strong> This alert box could indicate a successful or positive action.
+</div></div>';
+} else {
+  echo '<div class="container"><div class="alert alert-danger alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
+</div></div>' . $sql . $conn->error;
+}
+
+$conn->close();
+?>
 
 <div class= "container">
 <div class="table-responsive-sm">
@@ -45,7 +73,7 @@ $mensaje = $_POST["mensaje"];
     </thead>
     <tbody>
         <tr>
-            <td><?php echo $_POST["name"]; ?></td>
+            <td><?php echo $_POST["nombre"]; ?></td><!--estas dos deben ser remplazadas con las columnas de la db-->
             <td><?php echo $_POST["mensaje"]; ?></td>
         </tr>
     </tbody>

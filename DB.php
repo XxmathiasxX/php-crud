@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "mensajes";
+$dbname = "mathnet";
 //creating the conn 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn){
@@ -10,8 +10,9 @@ if (!$conn){
 }
 echo "conexion exitosa ";
 
-$sql = "INSERT INTO mathnet (id, name, mensaje)
-VALUES ('', 'matias', 'hello')";
+$sql = "INSERT INTO mensajes (id, mensaje, nombre)
+VALUES 
+('$_POST[id]','$_POST[mensaje]','$_POST[nombre]')";
 
 if ($conn->query($sql) === TRUE) {
   echo "añadido exitosamente";
