@@ -62,21 +62,23 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 ?>
 
-<div class= "container">
-<div class="table-responsive-sm">
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>user</th>
-        <th>message</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-            
-        </tr>
-    </tbody>
-    </div>
-    </div>
+<?php
+    
+    // Check connection
+    if (mysqli_connect_errno())
+      {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      }
+
+    $result = mysqli_query($conn,"SELECT * FROM mensajes");
+
+    while($row = mysqli_fetch_array($result))
+      {
+      echo $row['mensaje'] . " " . $row['nombre']; //these are the fields that you have stored in your database table employee
+      echo "<br />";
+      }
+
+    mysqli_close($conn);
+    ?>
 </body>
 </html>
