@@ -62,7 +62,6 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 ?>
 
-
 <?php
 $con = new mysqli($servername, $username, $password, $dbname);
 // Check conection
