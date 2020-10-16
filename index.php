@@ -65,7 +65,6 @@ $conn->close();
 
 <?php
 $con = new mysqli($servername, $username, $password, $dbname);
-// Check conection
 if ($con->conect_error) {
   die("Conection failed: " . $con->conect_error);
 }
