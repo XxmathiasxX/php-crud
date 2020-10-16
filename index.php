@@ -62,22 +62,27 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 ?>
 
-<div class= "container">
-<div class="table-responsive-sm">
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>user</th>
-        <th>message</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><?php echo $nombre; ?></td><!--estas dos deben ser remplazadas con las columnas de la db-->
-            <td><?php echo $mensaje; ?></td>
-        </tr>
-    </tbody>
-    </div>
-    </div>
+<?php
+$con = new mysqli($servername, $username, $password, $dbname);
+// Check conection
+if ($con->conect_error) {
+  die("Conection failed: " . $con->conect_error);
+}
+
+$sql = "SELECT id, nombre, mensaje FROM mensajes";
+$result = $con->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo " - Nombre: " . $row["nombre"]. " - Mensaje: " . $row["mensaje"]. "<br>";
+  }
+} else {
+  echo "0 results";
+}
+$con->close();
+?>
+
+
 </body>
 </html>
