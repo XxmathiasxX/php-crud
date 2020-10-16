@@ -15,6 +15,7 @@
 <!--logo-->
 <div class="jumbotron text-center">
   <h1>MathNet</h1>
+  <p>hola, bienvenido a MathNet la red donde pudes compartir tu nombre (si lo deseas) y un mensaje </p>
 </div>
 
 <!--mensaje-->
