@@ -50,7 +50,7 @@ VALUES ('$mensaje','$nombre')";
 if ($conn->query($sql) === TRUE) {
   echo '<div class="container"><div class="alert alert-success alert-dismissible">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Success!</strong> This alert box could indicate a successful or positive action.
+  <strong>Bien!</strong> Mensaje enviado
 </div></div>';
 } else {
   echo '<div class="container"><div class="alert alert-danger alert-dismissible">
@@ -76,13 +76,26 @@ $result = $con->query($sql);
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo " - Nombre: " . $row["nombre"]. " - Mensaje: " . $row["mensaje"]. "<br>";
+    echo '<div class= "container"><table class="table table-striped"><thead><tr><th>user</th><th>message</th></tr></thead><tbody><tbody><tr><td>' . $row["nombre"]. '</td><td>'. $row["mensaje"].'</td></tr></tbody></div></div></body></html>' ;
   }
 } else {
-  echo "0 results";
+  echo "0 resultados";
 }
 $con->close();
 ?>
 
-</body>
-</html>
+
+
+
+    
+      
+        
+        
+      
+    
+    
+        
+            
+
+
+
