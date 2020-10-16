@@ -73,8 +73,8 @@ $conn->close();
     </thead>
     <tbody>
         <tr>
-            <td><?php echo $_POST["nombre"]; ?></td><!--estas dos deben ser remplazadas con las columnas de la db-->
-            <td><?php echo $_POST["mensaje"]; ?></td>
+            <td><?php echo $nombre; ?></td><!--estas dos deben ser remplazadas con las columnas de la db-->
+            <td><?php echo $mensaje; ?></td>
         </tr>
     </tbody>
     </div>
