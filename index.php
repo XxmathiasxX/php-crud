@@ -62,23 +62,27 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 ?>
 
+
 <?php
-    
-    // Check connection
-    if (mysqli_connect_errno())
-      {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-      }
+$con = new mysqli($servername, $username, $password, $dbname);
+// Check conection
+if ($con->conect_error) {
+  die("Conection failed: " . $con->conect_error);
+}
 
-    $result = mysqli_query($conn,"SELECT * FROM mensajes");
+$sql = "SELECT id, nombre, mensaje FROM mensajes";
+$result = $con->query($sql);
 
-    while($row = mysqli_fetch_array($result))
-      {
-      echo $row['mensaje'] . " " . $row['nombre']; //these are the fields that you have stored in your database table employee
-      echo "<br />";
-      }
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo " - Nombre: " . $row["nombre"]. " - Mensaje: " . $row["mensaje"]. "<br>";
+  }
+} else {
+  echo "0 results";
+}
+$con->close();
+?>
 
-    mysqli_close($conn);
-    ?>
 </body>
 </html>
